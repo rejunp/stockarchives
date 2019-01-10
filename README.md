@@ -1,7 +1,6 @@
 # stockarchives
 
-Stock Archives is application build using the MEAN stack. 
-The MEAN stack uses Mongo, Express, Angular and Node for simple and scalable fullstack js applications
+Stock Archives is an application build using the MEAN stack. 
 
 # ![stockarchives](public/images/promo.png)
 
@@ -37,3 +36,4 @@ mongoimport --uri "mongodb+srv://XXXXX:XXXXXX@maincluster-XXXXX.mongodb.net/test
 - [x] Fetch More details about Ticker Searched
 - [x] Show OHLC graph of the data fetched
 - [ ] Top Stock Calculation/Analysis
+- [ ] Mobile Responsive 
