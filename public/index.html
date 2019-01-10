@@ -1,35 +1,26 @@
-<!-- index.html -->
 <!doctype html>
 
 <html ng-app="rpStock" lang="en">
 
 <head>
-
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Stock Analysis</title>
-
-
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css">
 	<link rel="stylesheet" type="text/css" href="core.css" />
-
 	<style>
 		html                    { overflow-y:scroll; }
     </style>
-
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- load jquery -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script><!-- load angular -->
-	<!--<script type="text/javascript" src="lib/angular-sanitize.min.js"></script>-->
-	<!--<script type="text/javascript" src="lib/lodash.min.js"></script>-->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-<script src="https://code.highcharts.com/stock/highstock.js"></script>
-<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/stock/highstock.js"></script>
+	<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 	<script src="core.js"></script>
 
 </head>
@@ -70,17 +61,6 @@
 						<div class="clearfix"></div>
 						<!--Search Bar Ends-->
 						<!--Card Start-->
-						<!--
-  "1. symbol": "WLTW",
-            "2. name": "Willis Towers Watson Public Limited Company",
-            "3. type": "Equity",
-            "4. region": "United States",
-            "5. marketOpen": "09:30",
-            "6. marketClose": "16:00",
-            "7. timezone": "UTC-05",
-            "8. currency": "USD",
-            "9. matchScore": "1.0000"
--->
 						<div class="row" id="stockMainCard" style="display: none;">
 							<div class="col-sm-10 offset-1">
 								<div class="card">
@@ -89,8 +69,6 @@
 									</div>
 									<div class="card-body">
 										<h5 class="card-title"><span class="octicon octicon-organization"></span> {{ singleCompanyInfo["2. name"] }}</h5>
-										<!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>-->
 									</div>
 									<div class="row">
 										<div class="col-sm-3">
@@ -126,30 +104,14 @@
 											</ul>
 										</div>
 									</div>
-									<!--<div class="card-body text-center">
-										<a class="btn btn-primary" data-toggle="collapse" href="#chart_div" role="button" aria-expanded="false" aria-controls="chart_div">Graph</a>
-
-
-
-									</div>-->
 									<div class="card-footer text-center">
-										<!--<div id="chart_div" class="chart"></div>-->
 										<div id="container" style="height: 400px; min-width: 310px"></div>
 									</div>
-									<!--<div class="card-footer text-muted">
-								2 days ago
-							</div>-->
 								</div>
 							</div>
 						</div>
 						<div class="clearfix"></div>
 						<!--Card End-->
-
-
-
-
-
-						<!---->
 
 						<!--Modal Hist Data Start-->
 						<!-- Modal -->
@@ -192,25 +154,11 @@
 											</div>
 										</div>
 									</div>
-									<!--<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save changes</button>
-									</div>-->
 								</div>
 							</div>
 						</div>
 						<!--Modal Hist Data End-->
-
-
-
 					</div>
-
-
-
-
-
-
-
 				</div>
 			</div>
 			<div class="col-sm-2">

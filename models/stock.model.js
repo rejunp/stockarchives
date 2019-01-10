@@ -11,5 +11,4 @@ let StockSchema = new Schema({
     volume: {type: Number, required: true}
 });
 
-// Export the model
 module.exports = mongoose.model('Stock', StockSchema);

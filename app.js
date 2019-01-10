@@ -1,6 +1,5 @@
 //setup
 const express = require('express');
-//const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 const methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
@@ -24,8 +23,6 @@ app.listen(port, () => {
     console.log('Server is up and running on port numner ' + port);
 });
 
-
-console.log("Path --> "+__dirname);
 // Set up mongoose connection
 let dev_db_url = KEY.MONGODB_ATLAS_URI;
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
