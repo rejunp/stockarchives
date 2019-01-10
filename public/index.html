@@ -1,0 +1,226 @@
+<!-- index.html -->
+<!doctype html>
+
+<html ng-app="rpStock" lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Stock Analysis</title>
+
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css">
+	<link rel="stylesheet" type="text/css" href="core.css" />
+
+	<style>
+		html                    { overflow-y:scroll; }
+    </style>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- load jquery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script><!-- load angular -->
+	<!--<script type="text/javascript" src="lib/angular-sanitize.min.js"></script>-->
+	<!--<script type="text/javascript" src="lib/lodash.min.js"></script>-->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+	<script src="core.js"></script>
+
+</head>
+
+<body>
+	<div class="jumbotron text-center">
+		<div class="container">
+			<h1 class="display-4">Stock Analysis <span class="label label-info"></span></h1>
+		</div>
+	</div>
+	<div class="container-fluid" ng-controller="topStocksController">
+		<div id="stock-list" class="row">
+			<div class="col-sm-10">
+				<div class="row">
+					<!--left main region-->
+					<div class="col-sm-12">
+						<div class="row">
+							<!--Search Bar Starts-->
+							<div class="col-sm-10 offset-1">
+								<form>
+									<div class="form-row align-items-center">
+										<div class="col-sm-11 my-1">
+											<label class="sr-only" for="inlineFormInputSearch">Search</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<div class="input-group-text"><strong><span class="octicon octicon-search"></span> Search Stock</strong></div>
+												</div>
+												<input id="inpTicker" class="form-control" ng-model="formData.ticker" type="text" name="ticker" placeholder=" Ticker/Symbol">
+											</div>
+										</div>
+										<div class="col-auto my-1">
+											<button type="submit" ng-click="searchByTicker()" class="btn btn-primary"><span class="octicon octicon-search"></span></button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<!--Search Bar Ends-->
+						<!--Card Start-->
+						<!--
+  "1. symbol": "WLTW",
+            "2. name": "Willis Towers Watson Public Limited Company",
+            "3. type": "Equity",
+            "4. region": "United States",
+            "5. marketOpen": "09:30",
+            "6. marketClose": "16:00",
+            "7. timezone": "UTC-05",
+            "8. currency": "USD",
+            "9. matchScore": "1.0000"
+-->
+						<div class="row" id="stockMainCard" style="display: none;">
+							<div class="col-sm-10 offset-1">
+								<div class="card">
+									<div class="card-header">
+										<span class="octicon octicon-graph"></span> Stock Details
+									</div>
+									<div class="card-body">
+										<h5 class="card-title"><span class="octicon octicon-organization"></span> {{ singleCompanyInfo["2. name"] }}</h5>
+										<!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+								<a href="#" class="btn btn-primary">Go somewhere</a>-->
+									</div>
+									<div class="row">
+										<div class="col-sm-3">
+											<ul class="list-group list-group-flush">
+												<li class="list-group-item">Symbol</li>
+												<li class="list-group-item">Type</li>
+												<li class="list-group-item">Region</li>
+												<li class="list-group-item">Market Open</li>
+											</ul>
+										</div>
+										<div class="col-sm-3">
+											<ul class="list-group list-group-flush">
+												<li class="list-group-item">{{ singleCompanyInfo["1. symbol"] }}</li>
+												<li class="list-group-item">{{ singleCompanyInfo["3. type"] }}</li>
+												<li class="list-group-item">{{ singleCompanyInfo["4. region"] }}</li>
+												<li class="list-group-item">{{ singleCompanyInfo["5. marketOpen"] }}</li>
+											</ul>
+										</div>
+										<div class="col-sm-3">
+											<ul class="list-group list-group-flush">
+												<li class="list-group-item">Market Close</li>
+												<li class="list-group-item">Timezone</li>
+												<li class="list-group-item">Currency</li>
+												<li class="list-group-item"></li>
+											</ul>
+										</div>
+										<div class="col-sm-3S">
+											<ul class="list-group list-group-flush">
+												<li class="list-group-item">{{ singleCompanyInfo["6. marketClose"] }}</li>
+												<li class="list-group-item">{{ singleCompanyInfo["7. timezone"] }}</li>
+												<li class="list-group-item">{{ singleCompanyInfo["8. currency"] }}</li>
+												<li class="list-group-item"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#histdata">Historical Data</a></li>
+											</ul>
+										</div>
+									</div>
+									<!--<div class="card-body text-center">
+										<a class="btn btn-primary" data-toggle="collapse" href="#chart_div" role="button" aria-expanded="false" aria-controls="chart_div">Graph</a>
+
+
+
+									</div>-->
+									<div class="card-footer text-center">
+										<!--<div id="chart_div" class="chart"></div>-->
+										<div id="container" style="height: 400px; min-width: 310px"></div>
+									</div>
+									<!--<div class="card-footer text-muted">
+								2 days ago
+							</div>-->
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<!--Card End-->
+
+
+
+
+
+						<!---->
+
+						<!--Modal Hist Data Start-->
+						<!-- Modal -->
+						<div class="modal fade" id="histdata" tabindex="-1" role="dialog" aria-labelledby="histdata" aria-hidden="true">
+							<div class="modal-dialog modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">Historical Data</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-12">
+													<div id="tbl">
+														<table class="table  table-hover table-sm">
+															<thead>
+																<tr>
+																	<th scope="col">Date</th>
+																	<th scope="col">Low</th>
+																	<th scope="col">Open</th>
+																	<th scope="col">Close</th>
+																	<th scope="col">High</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat="x in singleCompanyData">
+																	<td>{{ x.date }}</td>
+																	<td>{{ x.low }}</td>
+																	<td>{{ x.open }}</td>
+																	<td>{{ x.close }}</td>
+																	<td>{{ x.high }}</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Save changes</button>
+									</div>-->
+								</div>
+							</div>
+						</div>
+						<!--Modal Hist Data End-->
+
+
+
+					</div>
+
+
+
+
+
+
+
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<p><strong><span class="octicon octicon-star"></span> Top Performing</strong></p>
+				<div ng-repeat="stock in stocks">
+					<span class="octicon octicon-chevron-up"></span> {{ stock.symbol }}
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

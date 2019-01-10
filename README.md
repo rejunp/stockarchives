@@ -1,2 +1,2 @@
 # stockarchives
-Application - BrainWaves 2019 - MongoDB|NODE|ANGULAR
+Stock Archives (Brainwave 2019 Contest)
