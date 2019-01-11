@@ -123,7 +123,7 @@ function autocomplete(inp, arr) {
 	}
 
 	function closeAllLists(elmnt) {
-		except the one passed as an argument:*/
+
 		var x = document.getElementsByClassName("autocomplete-items");
 		for (var i = 0; i < x.length; i++) {
 			if (elmnt != x[i] && elmnt != inp) {
