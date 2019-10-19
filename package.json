@@ -6,7 +6,7 @@
   "dependencies": {
     "angular": "^1.7.5",
     "angular-sanitize": "^1.7.5",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.2.1",
     "csv": "^5.1.0",
